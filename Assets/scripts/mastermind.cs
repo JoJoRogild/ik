@@ -5,10 +5,9 @@ using System.Threading;
 
 public class mastermind : MonoBehaviour
 {
-    public int flip1 = 0;
-    public int flip2 = 0;
+    public string flip1 = "null";
+    public string flip2 = "null";
     public int flips = 0;
-    string[] conver = { "empty", "H2", "S" };
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +18,10 @@ public class mastermind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (flips == 2)
+        if (flip1 != "null" && flip2 != "null")
         {
 
-            flips = 0;
-
-            Thread.Sleep(2000);
-
+            print(flip1 + " + " + flip2);
 
             //enable alle boerns textobjecter
             for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -34,7 +30,10 @@ public class mastermind : MonoBehaviour
                 Childrens.gameObject.SetActive(true);
             }
 
+            Thread.Sleep(2000);
 
+            flip1 = "null";
+            flip2 = "null";
         }
     }
 }
