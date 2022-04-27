@@ -18,8 +18,9 @@ public class playerscript : MonoBehaviour
         int horizontalMov = (int)Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(horizontalMov * Time.deltaTime * speed + rb.velocity.x, rb.velocity.y);
         //y movement
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == 1)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround == 1 || Input.GetAxis("Mouse ScrollWheel") < 0 && isOnGround == 1)
         {
+            isOnGround = 0;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpFactor);
         }
     }
