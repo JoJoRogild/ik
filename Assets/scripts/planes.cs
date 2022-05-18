@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tank : MonoBehaviour
+public class planes : MonoBehaviour
 {
     public float speed;
     public GameObject player;
     private Rigidbody2D rb;
     public int hp = 10;
     public GameObject projectile;
-    private float timer = 5f;
+    public float timer = 5f;
+    private float startTimer;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        startTimer = timer;
+        rb = GetComponent<Rigidbody2D>();        
     }
 
+    // Update is called once per frame
     void Update()
     {
         if(player.transform.position.x - transform.position.x < 0){
@@ -23,8 +26,6 @@ public class tank : MonoBehaviour
         else{
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
-        //float rot_z = Mathf.Atan2(player.transform.position.y-transform.position.y, player.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
-        //transform.GetChild(0).rotation = Quaternion.Euler(0f, 0f, rot_z+90);
         timer -= Time.deltaTime;
         if(timer <= 0){
             Vector3 diff = player.transform.position - transform.position;
@@ -38,11 +39,7 @@ public class tank : MonoBehaviour
         if(hp <= 0){
             Destroy(this.gameObject);
         }
-    }
-    void OnCollisionEnter2D(Collision2D coll){
-        if(coll.gameObject.tag == "Player"){
-            Destroy(coll.gameObject);
-        }
+
     }
     public void hit(){
         hp -= 1;

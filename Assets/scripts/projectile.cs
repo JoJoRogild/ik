@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
-    float timer = 15;
+    public float timer = 15;
 
     void Update(){
         timer -= Time.deltaTime;
