@@ -27,11 +27,12 @@ public class tankprojectile : MonoBehaviour
         }
         if(col.tag == "Player"){
             player = col.gameObject;
+            col.gameObject.GetComponent<playerscript>().hit();
             Debug.Log("this is inside the function idk ");
             GetComponent<Animator>().SetBool("Explote", true);
             Debug.Log("afteer");
             rb.velocity = new Vector3(0,0,0);
-            col.GetComponent<playerscript>().hit();
+            //col.GetComponent<playerscript>().hit();
             return;
         }
         Destroy(this.gameObject);

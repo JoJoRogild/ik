@@ -17,11 +17,17 @@ public class playerscript : MonoBehaviour
     void Update()
     {
         if(health <= 0){
-            SceneManager.LoadScene("die", LoadSceneMode.Additive);
+            SceneManager.LoadScene("die");
         }
         //x movement
         int horizontalMov = (int)Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(horizontalMov * Time.deltaTime * speed + rb.velocity.x, rb.velocity.y);
+        if(horizontalMov < 0){
+            this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, 180, this.transform.eulerAngles.z );
+        }
+        else if(horizontalMov > 0){
+            this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, 0, this.transform.eulerAngles.z );
+        }
         //y movement
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround == 1 || Input.GetAxis("Mouse ScrollWheel") < 0 && isOnGround == 1)
         {
