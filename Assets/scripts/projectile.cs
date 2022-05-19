@@ -20,6 +20,9 @@ public class projectile : MonoBehaviour
         else if(col.tag == "tank"){
             col.gameObject.GetComponent<tank>().hit();
         }
+        else if(col.tag == "plane"){
+            col.gameObject.GetComponent<planes>().hit();
+        }
         Destroy(this.gameObject);
     }
 }

@@ -20,21 +20,26 @@ public class planes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x - transform.position.x < 0){
+        if(player.transform.position.x - transform.position.x < -0.1f){
             rb.velocity = new Vector2(-speed, rb.velocity.y);
+            this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, 180, this.transform.eulerAngles.z );
         }
-        else{
+        else if(player.transform.position.x - transform.position.x > 0.1f){
+            this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, 0, this.transform.eulerAngles.z );
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
-        timer -= Time.deltaTime;
-        if(timer <= 0){
+        else{
+            rb.velocity = new Vector2(0, 0);
+        }
+        startTimer -= Time.deltaTime;
+        if(startTimer <= 0){
             Vector3 diff = player.transform.position - transform.position;
             diff.Normalize();
             float rot_z = Mathf.Atan2(player.transform.position.y-transform.position.y, player.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
             GameObject test = Instantiate(projectile, transform.position, transform.rotation);
             test.transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
             test.GetComponent<Rigidbody2D>().velocity =  diff*20;
-            timer = 10f;
+            startTimer = timer;
         }
         if(hp <= 0){
             Destroy(this.gameObject);

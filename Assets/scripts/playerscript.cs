@@ -51,6 +51,9 @@ public class playerscript : MonoBehaviour
     }
     public void hit(){
         health -= 1;
+        if(health <= 0){
+            SceneManager.LoadScene("die");
+        }
     }
 
 }

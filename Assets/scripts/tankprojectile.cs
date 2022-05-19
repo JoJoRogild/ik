@@ -21,8 +21,16 @@ public class tankprojectile : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.tag);
+        Debug.Log(col.tag + " " + col.gameObject.name);
         if(col.tag == "tank"){
+            Debug.Log("in here in this tank check");
+            return;
+        }
+        else if(col.tag == "plane"){
+            Debug.Log("in here in this plane check");
+            return;
+        }
+        if(col.tag == "projectile"){
             return;
         }
         if(col.tag == "Player"){
